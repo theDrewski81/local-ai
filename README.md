@@ -10,17 +10,17 @@ your installation.
 
 ## What's In The Package
 
--**Ollama** A cross-platform LLM platform to install and run the latest local LLMs
+- **Ollama** A cross-platform LLM platform to install and run the latest local LLMs
 |[Website](https://ollama.com/), [Github](https://github.com/ollama/ollama)
--**Supabase** is an open source database as a service that leverages vectoring ideal for RAG agents
+- **Supabase** is an open source database as a service that leverages vectoring ideal for RAG agents
 |[Website](https://supabase.com/), [Github](https://github.com/supabase/supabase)
--**Qdrant**, like Supabase, is an open source vector database store. Qdrant may outperform Supabase in some instances
+- **Qdrant**, like Supabase, is an open source vector database store. Qdrant may outperform Supabase in some instances
 |[Website](https://qdrant.tech/), [Github](https://github.com/qdrant/qdrant)
--**n8n** is a low-code platform with over 400 integrations and advanced AI components
+- **n8n** is a low-code platform with over 400 integrations and advanced AI components
 |[Website](https://n8n.io/), [Github](https://github.com/n8nio)
--**FlowiseAI** A low/no code AI agent builder that pairs very well with n8n
+- **FlowiseAI** A low/no code AI agent builder that pairs very well with n8n
 |[Website](https://flowiseai.com/), [Github](https://github.com/flowiseai/flowise)
--**Open WebUI** is a ChatGPT-like interface to privately interact with your local models and n8n agents
+- **Open WebUI** is a ChatGPT-like interface to privately interact with your local models and n8n agents
 |[Website](https://openwebui.com/), [Github](https://github.com/open-webui/open-webui)
 
 -**** [Website](), [Github]()
