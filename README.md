@@ -10,13 +10,13 @@ This package has been personalized to fit my needs. See the "Important Notes" se
 : [Website](https://ollama.com/), [Github](https://github.com/ollama/ollama)
 - **Supabase** is an open source database as a service that leverages vectoring ideal for RAG agents
 : [Website](https://supabase.com/), [Github](https://github.com/supabase/supabase)
-- **Qdrant**, like Supabase, is an open vector db store. Qdrant may outperform Supabase in some instances
+- **Qdrant**, like Supabase, is an open vector db store but may outperform Supabase for some uses
 : [Website](https://qdrant.tech/), [Github](https://github.com/qdrant/qdrant)
 - **n8n** is a low-code platform with over 400 integrations and advanced AI components
 : [Website](https://n8n.io/), [Github](https://github.com/n8nio)
 - **FlowiseAI** A low/no code AI agent builder that pairs very well with n8n
 : [Website](https://flowiseai.com/), [Github](https://github.com/flowiseai/flowise)
-- **Open WebUI** is a ChatGPT-like interface to privately interact with your local models and n8n agents
+- **Open WebUI** is a ChatGPT-like interface to privately interact with your local models and agents
 : [Website](https://openwebui.com/), [Github](https://github.com/open-webui/open-webui)
 
 
@@ -25,15 +25,14 @@ This package has been personalized to fit my needs. See the "Important Notes" se
 - [Git/GitHub Desktop](https://desktop.github.com/) - For easy repository management
 - [Docker/Docker Desktop](https://www.docker.com/products/docker-desktop/) - Required to run all services
 - If using a non-headless OS, the desktop version of these is recommended to monitor this many containers.
-- Designed to work with on Windows/Mac/Linux. Confirmed to work on Windows 11 and Ubuntu Live Server 24.04.2
+- Designed to work with on Windows/Mac/Linux. Confirmed to work on Windows 11 and Ubuntu Server 24.04
 
 ## Important Notes
 
-**Local AI** is configured for my specific architecture. Take note of the following:
-*This has configuration for the vector db to be stored on a mounted secondary disk and for the LLM to use CPU-Only*
+**Local AI** is configured for my specific architecture. Take note, *this has configuration for the vector db to be stored on a mounted secondary disk and for the LLM to use CPU-Only*
 ### **REQUIRED** update: 
 In docker-compose.yml, search '/vector-store/' for two instances. Apply one of the two options below.
-1. If you intend to use a secondary disk as well, replace '/vector-store/' with the path to your storage folder. Keep everything after.
+1. If you intend to use a secondary disk as well, replace '/vector-store/' with the '/path to your storage directory/'. Keep everything after.
 2. If you intend to use the standard storage, replace '/vector-store/' with './'. Keep everything after that.
 
 ### **Optional** config: 
@@ -50,7 +49,7 @@ git clone https://github.com/theDrewski81/local-ai.git
 cd local-ai
 ```
 
-**Before running compose, there are configuration changes that must be made**
+**'**'Before running compose, there are configuration changes that must be made'**'**
 
 2. Copy '.env.example' and rename as '.env'.
 3. In .env, set the following environment variables. 
@@ -79,6 +78,7 @@ cd local-ai
 The [Supabase Self-Hosting Doc](https://supabase.com/docs/guides/self-hosting/docker)
 has a **Generate API** tool for the Supabase JWT_SECRET, ANON_KEY, and SERVICE_ROLE_KEY. For the rest, create your own. POOLER_TENANT_ID 
 can be any 4-5 digit number.
+
 4. Make updates to '/docker/docker-compose.yml' per the previous section.
 5. Execute with 
 ```
