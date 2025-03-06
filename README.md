@@ -49,7 +49,7 @@ git clone https://github.com/theDrewski81/local-ai.git
 cd local-ai
 ```
 
-**'**'Before running compose, there are configuration changes that must be made'**'**
+****Before running compose, there are configuration changes that must be made****
 
 2. Copy '.env.example' and rename as '.env'.
 3. In .env, set the following environment variables. 
