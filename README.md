@@ -23,11 +23,6 @@ your installation.
 - **Open WebUI** is a ChatGPT-like interface to privately interact with your local models and n8n agents
 |[Website](https://openwebui.com/), [Github](https://github.com/open-webui/open-webui)
 
--**** [Website](), [Github]()
--**** [Website](), [Github]()
--**** [Website](), [Github]()
--**** [Website](), [Github]()
--**** [Website](), [Github]()
 
 ## Prerequisites
 
@@ -40,7 +35,7 @@ your installation.
 
 **Local AI** is configured for my specific architecture. Take note of the following:
 - This has configuration for vector db to be stored on a mounted secondary disk
--- **REQUIRED** update: in docker-compose.yml, search '/vector-store/' for two instances.
+- **REQUIRED** update: in docker-compose.yml, search '/vector-store/' for two instances.
 1. If you intend to use a secondary disk as well, replace '/vector-store/' with the path to your storage folder. Keep everything after.
 2. If you intend to use the standard storage, replace '/vector-store/' with './'. Keep everything after that.
 
@@ -48,6 +43,7 @@ your installation.
 those modules' section in the docker-compose.yml under 'services' and comment them out with a '#' to save storage space.
 - For Supabase, all sub containers are required in order to function. They are [studio, kong, auth, rest, realtime, storage, imgproxy, meta, function, analytics, db, vector, and supavisor]. Do not comment these out.
 - The default Ollama image is CPU-Only. See the [Ollama documentation](https://ollama.com/) to determine the correct image if you wish you utilize your GPU.
+- In the docker-compose.yml, the x-init-ollama service defines what model(s) to pull on first start. You can change the portion of the command 'LAMA_HOST=ollama:11434 ollama pull {your model of choice}' For multiple models, include the whole command for each, separated by a semicolon.
 
 ## Installation
 
