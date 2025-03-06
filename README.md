@@ -1,27 +1,23 @@
 # Local AI 
 
-**Local AI** is an open, Docker Compose template designed to quickly bootstrap
-a robust, low/no code development environment comprising AI, workflow, and storage
-modules.
+**Local AI** is an open, Docker Compose template designed to quickly bootstrap a robust, low/no code development environment comprising LLM/RAG AI, workflow, and storage modules.
 
-This package has been personalized to fit my needs. See the "Important Notes" section
-before the installation guide to determine if/what changes would be appropriate for 
-your installation.
+This package has been personalized to fit my needs. See the "Important Notes" section before the installation guide to determine if/what changes would be appropriate for your installation.
 
 ## What's In The Package
 
 - **Ollama** A cross-platform LLM platform to install and run the latest local LLMs
-|[Website](https://ollama.com/), [Github](https://github.com/ollama/ollama)
+: [Website](https://ollama.com/), [Github](https://github.com/ollama/ollama)
 - **Supabase** is an open source database as a service that leverages vectoring ideal for RAG agents
-|[Website](https://supabase.com/), [Github](https://github.com/supabase/supabase)
-- **Qdrant**, like Supabase, is an open source vector database store. Qdrant may outperform Supabase in some instances
-|[Website](https://qdrant.tech/), [Github](https://github.com/qdrant/qdrant)
+: [Website](https://supabase.com/), [Github](https://github.com/supabase/supabase)
+- **Qdrant**, like Supabase, is an open vector db store. Qdrant may outperform Supabase in some instances
+: [Website](https://qdrant.tech/), [Github](https://github.com/qdrant/qdrant)
 - **n8n** is a low-code platform with over 400 integrations and advanced AI components
-|[Website](https://n8n.io/), [Github](https://github.com/n8nio)
+: [Website](https://n8n.io/), [Github](https://github.com/n8nio)
 - **FlowiseAI** A low/no code AI agent builder that pairs very well with n8n
-|[Website](https://flowiseai.com/), [Github](https://github.com/flowiseai/flowise)
+: [Website](https://flowiseai.com/), [Github](https://github.com/flowiseai/flowise)
 - **Open WebUI** is a ChatGPT-like interface to privately interact with your local models and n8n agents
-|[Website](https://openwebui.com/), [Github](https://github.com/open-webui/open-webui)
+: [Website](https://openwebui.com/), [Github](https://github.com/open-webui/open-webui)
 
 
 ## Prerequisites
@@ -34,16 +30,17 @@ your installation.
 ## Important Notes
 
 **Local AI** is configured for my specific architecture. Take note of the following:
-- This has configuration for vector db to be stored on a mounted secondary disk
-- **REQUIRED** update: in docker-compose.yml, search '/vector-store/' for two instances.
+*This has configuration for the vector db to be stored on a mounted secondary disk and for the LLM to use CPU-Only*
+### **REQUIRED** update: 
+In docker-compose.yml, search '/vector-store/' for two instances. Apply one of the two options below.
 1. If you intend to use a secondary disk as well, replace '/vector-store/' with the path to your storage folder. Keep everything after.
 2. If you intend to use the standard storage, replace '/vector-store/' with './'. Keep everything after that.
 
-- **Optional** config: If you do not plan to use any of these modules (e.g., will use Supabase only, omit Qdrant), you can find
-those modules' section in the docker-compose.yml under 'services' and comment them out with a '#' to save storage space.
-- For Supabase, all sub containers are required in order to function. They are [studio, kong, auth, rest, realtime, storage, imgproxy, meta, function, analytics, db, vector, and supavisor]. Do not comment these out.
+### **Optional** config: 
+If there are any modules you do not plan to use (e.g., will use Supabase only, omit Qdrant), you can find those modules' section in the docker-compose.yml under 'services' and comment them out with a '#' to save storage space.
+- For Supabase, all sub containers are required in order to function. They are [*studio, kong, auth, rest, realtime, storage, imgproxy, meta, function, analytics, db, vector, and supavisor*]. Do not comment these out.
 - The default Ollama image is CPU-Only. See the [Ollama documentation](https://ollama.com/) to determine the correct image if you wish you utilize your GPU.
-- In the docker-compose.yml, the x-init-ollama service defines what model(s) to pull on first start. You can change the portion of the command 'LAMA_HOST=ollama:11434 ollama pull {your model of choice}' For multiple models, include the whole command for each, separated by a semicolon.
+- In the docker-compose.yml, the x-init-ollama service defines what model(s) to pull on startup. You can change the portion of the command `LAMA_HOST=ollama:11434 ollama pull {your model of choice}` For multiple models, include the whole command for each, separated by a semicolon.
 
 ## Installation
 
@@ -56,7 +53,30 @@ cd local-ai
 **Before running compose, there are configuration changes that must be made**
 
 2. Copy '.env.example' and rename as '.env'.
-3. In .env, set the following environment variables. The [Supabase Self-Hosting Doc](https://supabase.com/docs/guides/self-hosting/docker)
+3. In .env, set the following environment variables. 
+ ```bash
+   ############
+   # N8N Configuration
+   ############
+   N8N_ENCRYPTION_KEY=
+   N8N_USER_MANAGEMENT_JWT_SECRET=
+
+   ############
+   # Supabase Secrets
+   ############
+   POSTGRES_PASSWORD=
+   JWT_SECRET=
+   ANON_KEY=
+   SERVICE_ROLE_KEY=
+   DASHBOARD_USERNAME=
+   DASHBOARD_PASSWORD=
+
+   ############
+   # Supavisor -- Database pooler
+   ############
+   POOLER_TENANT_ID=
+   ```
+The [Supabase Self-Hosting Doc](https://supabase.com/docs/guides/self-hosting/docker)
 has a **Generate API** tool for the Supabase JWT_SECRET, ANON_KEY, and SERVICE_ROLE_KEY. For the rest, create your own. POOLER_TENANT_ID 
 can be any 4-5 digit number.
 4. Make updates to '/docker/docker-compose.yml' per the previous section.
